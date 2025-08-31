@@ -8,12 +8,55 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Simulador de Ahorro Mensual</h1>
-    <p>
-        Este simulador te permite calcular cuánto dinero puedes ahorrar mensualmente en base a tus ingresos y gastos. 
-        Utiliza la consola de JavaScript y los cuadros de diálogo para interactuar con el simulador. 
-        Ingresa tus datos y obtén un resumen de tu capacidad de ahorro.
-    </p>
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Simulador de Ahorro Mensual</h1>
+        <p class="text-center">
+            Este simulador te permite calcular cuánto dinero puedes ahorrar mensualmente en base a tus ingresos y gastos.<br>
+            Ingresa tus datos en los formularios y obtén un resumen de tu capacidad de ahorro.
+        </p>
+        <div class="bloques-flex mb-4">
+            <div class="bloque-simulador">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h3 class="text-center">Ingresos</h3>
+                        <form id="form-ingreso" class="mb-3">
+                            <div class="mb-2">
+                                <input type="text" id="fuente-ingreso" class="form-control" placeholder="Fuente de ingreso" required>
+                            </div>
+                            <div class="mb-2">
+                                <input type="number" id="monto-ingreso" class="form-control" placeholder="Monto mensual" min="0" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Agregar ingreso</button>
+                        </form>
+                        <ul id="lista-ingresos" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bloque-simulador">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h3 class="text-center">Gastos</h3>
+                        <form id="form-gasto" class="mb-3">
+                            <div class="mb-2">
+                                <input type="text" id="tipo-gasto" class="form-control" placeholder="Tipo de gasto" required>
+                            </div>
+                            <div class="mb-2">
+                                <input type="number" id="monto-gasto" class="form-control" placeholder="Monto mensual" min="0" required>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100">Agregar gasto</button>
+                        </form>
+                        <ul id="lista-gastos" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bloque-calculo">
+            <button id="btn-calcular" class="btn btn-success btn-lg mb-3">Calcular Ahorro</button>
+            <div id="resumen" class="mt-4 fs-5"></div>
+        </div>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/dom.js"></script>
     <script src="js/simulador.js"></script>
 </body>
 </html>

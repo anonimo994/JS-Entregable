@@ -1,3 +1,27 @@
+/* Centrado horizontal de los bloques principales */
+.bloques-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-left: 400px;
+    margin-right: auto;
+    max-width: 900px;
+}
+
+.bloque-simulador {
+    min-width: 320px;
+    max-width: 400px;
+}
+
+/* Centrado del botón y resumen debajo */
+.bloque-calculo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
 body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,4 +42,24 @@ p {
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     font-size: 1.1rem;
     color: #333;
+}
+
+h1, h3 {
+    color: #0d6efd;
+}
+
+.list-group-item {
+    font-size: 1.1rem;
+}
+
+#resumen {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    display: inline-block;
+}
+
+.btn-success {
+    margin-top: 1rem;
 }
