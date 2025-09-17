@@ -3,58 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Ahorro Mensual</title>
+    <title>💰 Simulador de Ahorro Mensual</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6DQD5P1Q1QnNQZl+CB3Rv6lGA6auU9kB8/tTE1Pi6jizo" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
-    <div class="container py-4">
-        <h1 class="text-center mb-4">Simulador de Ahorro Mensual</h1>
-        <p class="text-center">
-            Este simulador te permite calcular cuánto dinero puedes ahorrar mensualmente en base a tus ingresos y gastos.<br>
-            Ingresa tus datos en los formularios y obtén un resumen de tu capacidad de ahorro.
-        </p>
-        <div class="bloques-flex mb-4">
-            <div class="bloque-simulador">
-                <div class="card shadow-sm mb-3">
-                    <div class="card-body">
-                        <h3 class="text-center">Ingresos</h3>
-                        <form id="form-ingreso" class="mb-3">
-                            <div class="mb-2">
-                                <input type="text" id="fuente-ingreso" class="form-control" placeholder="Fuente de ingreso" required>
-                            </div>
-                            <div class="mb-2">
-                                <input type="number" id="monto-ingreso" class="form-control" placeholder="Monto mensual" min="0" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Agregar ingreso</button>
-                        </form>
-                        <ul id="lista-ingresos" class="list-group"></ul>
-                    </div>
-                </div>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title text-center">
+                    <i class="fas fa-piggy-bank me-3"></i>
+                    Simulador de Ahorro Mensual
+                </h1>
+                <p class="hero-subtitle">
+                    Calcula tu capacidad de ahorro de manera inteligente y toma control de tus finanzas personales
+                </p>
             </div>
-            <div class="bloque-simulador">
-                <div class="card shadow-sm mb-3">
-                    <div class="card-body">
-                        <h3 class="text-center">Gastos</h3>
-                        <form id="form-gasto" class="mb-3">
-                            <div class="mb-2">
-                                <input type="text" id="tipo-gasto" class="form-control" placeholder="Tipo de gasto" required>
-                            </div>
-                            <div class="mb-2">
-                                <input type="number" id="monto-gasto" class="form-control" placeholder="Monto mensual" min="0" required>
-                            </div>
-                            <button type="submit" class="btn btn-danger w-100">Agregar gasto</button>
-                        </form>
-                        <ul id="lista-gastos" class="list-group"></ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="bloque-calculo">
-            <button id="btn-calcular" class="btn btn-success btn-lg mb-3">Calcular Ahorro</button>
-            <div id="resumen" class="mt-4 fs-5"></div>
         </div>
     </div>
+
+    <div class="container py-5">
+        <!-- Sección de formularios -->
+        <div class="form-section mb-5">
+            <div class="row g-4">
+                <!-- Card de Ingresos -->
+                <div class="col-lg-6">
+                    <div class="modern-card income-card h-100">
+                        <div class="card-header-modern">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-wrapper income-icon">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <h3 class="card-title-modern">💰 Ingresos</h3>
+                            </div>
+                        </div>
+                        <div class="card-body-modern">
+                            <form id="form-ingreso" class="modern-form">
+                                <div class="form-group-modern">
+                                    <label for="fuente-ingreso" class="form-label-modern">
+                                        <i class="fas fa-wallet me-2"></i>Fuente de ingreso
+                                    </label>
+                                    <input type="text" id="fuente-ingreso" class="form-control-modern" placeholder="Ej: Salario, Freelance..." required>
+                                </div>
+                                <div class="form-group-modern">
+                                    <label for="monto-ingreso" class="form-label-modern">
+                                        <i class="fas fa-dollar-sign me-2"></i>Monto mensual
+                                    </label>
+                                    <input type="number" id="monto-ingreso" class="form-control-modern" placeholder="0" min="0" required>
+                                </div>
+                                <div class="form-group-modern">
+                                    <label for="categoria-ingreso" class="form-label-modern">
+                                        <i class="fas fa-tags me-2"></i>Categoría
+                                    </label>
+                                    <select id="categoria-ingreso" class="form-select-modern" required>
+                                        <option value="">Selecciona una categoría</option>
+                                        <option value="Salario">💼 Salario</option>
+                                        <option value="Freelance">💻 Freelance</option>
+                                        <option value="Inversiones">📈 Inversiones</option>
+                                        <option value="Otros">🔧 Otros</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-modern btn-income">
+                                    <i class="fas fa-plus me-2"></i>Agregar ingreso
+                                </button>
+                            </form>
+                            <div class="list-container">
+                                <h5 class="list-title">
+                                    <i class="fas fa-list me-2"></i>Ingresos registrados
+                                </h5>
+                                <ul id="lista-ingresos" class="modern-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card de Gastos -->
+                <div class="col-lg-6">
+                    <div class="modern-card expense-card h-100">
+                        <div class="card-header-modern">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-wrapper expense-icon">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <h3 class="card-title-modern">💸 Gastos</h3>
+                            </div>
+                        </div>
+                        <div class="card-body-modern">
+                            <form id="form-gasto" class="modern-form">
+                                <div class="form-group-modern">
+                                    <label for="tipo-gasto" class="form-label-modern">
+                                        <i class="fas fa-receipt me-2"></i>Tipo de gasto
+                                    </label>
+                                    <input type="text" id="tipo-gasto" class="form-control-modern" placeholder="Ej: Renta, Comida..." required>
+                                </div>
+                                <div class="form-group-modern">
+                                    <label for="monto-gasto" class="form-label-modern">
+                                        <i class="fas fa-dollar-sign me-2"></i>Monto mensual
+                                    </label>
+                                    <input type="number" id="monto-gasto" class="form-control-modern" placeholder="0" min="0" required>
+                                </div>
+                                <div class="form-group-modern">
+                                    <label for="categoria-gasto" class="form-label-modern">
+                                        <i class="fas fa-tags me-2"></i>Categoría
+                                    </label>
+                                    <select id="categoria-gasto" class="form-select-modern" required>
+                                        <option value="">Selecciona una categoría</option>
+                                        <option value="Vivienda">🏠 Vivienda</option>
+                                        <option value="Comida">🍽️ Comida</option>
+                                        <option value="Transporte">🚗 Transporte</option>
+                                        <option value="Servicios">⚡ Servicios</option>
+                                        <option value="Otros">🔧 Otros</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-modern btn-expense">
+                                    <i class="fas fa-plus me-2"></i>Agregar gasto
+                                </button>
+                            </form>
+                            <div class="list-container">
+                                <h5 class="list-title">
+                                    <i class="fas fa-list me-2"></i>Gastos registrados
+                                </h5>
+                                <ul id="lista-gastos" class="modern-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sección de resultados -->
+        <div class="results-section">
+            <div class="row g-4">
+                <!-- Panel de acciones -->
+                <div class="col-12">
+                    <div class="action-panel">
+                        <div class="d-flex flex-wrap gap-3 justify-content-center">
+                            <button id="btn-calcular" class="btn-action btn-calculate">
+                                <i class="fas fa-calculator me-2"></i>Calcular Ahorro
+                            </button>
+                            <button id="btn-exportar" class="btn-action btn-export">
+                                <i class="fas fa-download me-2"></i>Exportar Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de resumen -->
+                <div class="col-lg-6">
+                    <div class="modern-card summary-card">
+                        <div class="card-header-modern">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-wrapper summary-icon">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <h3 class="card-title-modern">Resumen de Ahorro</h3>
+                            </div>
+                        </div>
+                        <div class="card-body-modern">
+                            <div id="resumen" class="summary-content"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de historial -->
+                <div class="col-lg-6">
+                    <div class="modern-card history-card">
+                        <div class="card-header-modern">
+                            <div class="d-flex align-items-center">
+                                <div class="icon-wrapper history-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <h3 class="card-title-modern">Historial de Transacciones</h3>
+                            </div>
+                        </div>
+                        <div class="card-body-modern">
+                            <div class="history-container">
+                                <ul id="historial" class="modern-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="js/storage.js"></script>
     <script src="js/dom.js"></script>
     <script src="js/simulador.js"></script>

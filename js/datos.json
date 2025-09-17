@@ -1,0 +1,10 @@
+{
+  "ingresos": [
+    { "fuente": "Trabajo", "monto": 36000 },
+    { "fuente": "Freelance", "monto": 8000 }
+  ],
+  "gastos": [
+    { "tipo": "Renta", "monto": 4600 },
+    { "tipo": "Comida", "monto": 3500 }
+  ]
+}
